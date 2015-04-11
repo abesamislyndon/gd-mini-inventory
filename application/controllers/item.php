@@ -57,7 +57,10 @@ class Item extends CI_Controller {
                 $error = array(
                     'error' => $this->upload->display_errors()
                 );
-                $this->load->view('add_item', $error);
+             
+                $data = $this->upload->data();
+                $this->thumb($data);             
+                $this->item_model->do_insert_item($item_name, $item_category, $item_no, $item_date,$item_sell_price,$item_pur_price,$item_quantity, $data,$brand);    
                } 
               else 
               {

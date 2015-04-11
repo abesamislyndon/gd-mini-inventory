@@ -54,7 +54,7 @@
 
           <div class="col-md-4 margin-bottom-30">
             <label for="exampleInputFile">Upload Photo</label>
-            <input type="file" name="userfile"  class = "custom-file-input" required>
+            <input type="file" name="userfile"  class = "custom-file-input">
             <p class="help-block">Photo must not exceed 3mb</p>  
           </div>    
 

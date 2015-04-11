@@ -19,7 +19,6 @@ class Dashboard extends CI_Controller
         	$data['zero_bal'] = $this->item_model->zero_balance_dashboard();
         	$data['customer'] = $this->item_model->customer_dashboard();
 
-
 			$this->load->view('scaffolds/header');
 			$this->load->view('scaffolds/sidebar');
 			$this->load->view('dashboard', $data);

@@ -33,7 +33,7 @@
                     <th width = "25%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">ITEM DESCRIPTION</span></th>
                     <th width = "10%" style = "font-size:11px"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">SP (SGD)</span></th>
                     <th width = "10%" style = "font-size:11px"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">PP (SGD)</span></th>
-                    <th width = "20%" style = "font-size:11px"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">QTY</span></th>
+                    <th width = "10%" style = "font-size:11px"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">QTY</span></th>
                     <th><i class="fa fa-plus-circle"></i></th>
                     <th><i class="fa fa-minus-circle"></i></th>
                     <th><i class="fa fa-clock-o"></i></th>
@@ -44,9 +44,14 @@
               	<?php
                      if (isset($item_dashboard_details) & ($item_dashboard_details <> NULL)) {
                         foreach($item_dashboard_details as $details): ?>
-                  <tbody>
+               <tbody>
                 <tr id = "<?php echo $details->id?>">
-                  <td><img src="<?php echo base_url("uploads/")?>/<?php echo $details->img_name.$details->ext ?>" class = "img-details"></td>
+                  <td>
+                    <?php if($details->img_name.$details->ext == '') {?>
+                        <img src="<?php echo base_url("uploads/")?>/default.jpg" class = "img-details"></td>
+                    <?php }else{ ?>
+                    <img src="<?php echo base_url("uploads/")?>/<?php echo $details->img_name.$details->ext ?>" class = "img-details"></td>
+                  <?php } ?>
                   <td><br><?php echo $details->name ?><br><span class = "sub-desc">Item no:&nbsp;<?php echo $details->item_no ?></span><br><span class = "sub-desc-cat">Category: &nbsp;<?php echo $details->cat_name ?></span></td>
                   <td style = "text-align:center;"><br><br><?php echo $details->price ?></a></td>                    
                   <td style = "text-align:center;" ><br><br><?php echo $details->item_pur_price ?></td>
@@ -55,7 +60,7 @@
                   <td><br><a href="#sub_modal" role="button"  class = "button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details->id ?>" data-remote-target="#sub_modal .modal-body">subtract&nbsp;<i class="fa fa-minus-circle"></i></a></td>
                   <td><br><a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details->id ?>" role="button"  class = "button2">History&nbsp;<i class="fa fa-clock-o"></i></a></td>
                   <td><br>  
-                     <div class="btn-group pull-right">
+                    <div class="btn-group pull-right">
                       <button type="button" class="button3 dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                           <span class="sr-only">Toggle Dropdown</span>

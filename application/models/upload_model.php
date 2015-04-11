@@ -4,8 +4,8 @@ public function __construct()
 {
 parent::__construct();
 }
-function add_image($data)
-{
-$this->db->insert('uploads',$data);
-}
+	function add_image($data)
+	{	
+		$this->db->insert('uploads',$data);
+	}
 }

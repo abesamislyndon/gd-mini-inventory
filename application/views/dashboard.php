@@ -1,9 +1,9 @@
-  <div class="templatemo-content-wrapper">
-  <div class="templatemo-content">
+ <div class="templatemo-content-wrapper">
+    <div class="templatemo-content">
       <div class = "confirm-div"></div>
-         <hr class = "carved">
+        <hr class = "carved">
 
-      <div class="row">
+          <div class="row">
                <div class="col-md-3">
                  <div class="panel panel-success">
                    <div class="panel-heading">NO. OF ITEMS PER CATEGORY IN CHART</div>
@@ -21,7 +21,7 @@
                  </div>                       
                 </div>
                 
-               <div class="col-md-6">
+             <div class="col-md-6">
                   <div class = "box">
                      <h5><i class="fa fa-suitcase"></i>&nbsp;&nbsp;NO. OF ITEM QUOTED</h5>
                       <hr class  = "box-hr">
@@ -32,9 +32,9 @@
                       <?php endforeach;?>   
                    </div><!--end of box division--> 
               </div> 
-            </div>
+             </div>
          
-             <div class = "row">
+              <div class = "row">
                 <div class="col-md-3">
                    <div class = "box">
                      <h5><i class="fa fa-suitcase"></i>&nbsp;&nbsp;NO. OF ITEMS PER CATEGORY</h5>
@@ -73,7 +73,7 @@
                      </div><!--end of box division--> 
                  </div>  
             </div><!--end of row-->
-    </div><!--end of templatemo-content-->
+       </div><!--end of templatemo-content-->
   </div><!--end of templatemo-content-wrapper-->
 
 
