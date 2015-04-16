@@ -21,7 +21,7 @@
   $(document).ready(function(){
    $('confirm.div').hide();
     <?php if($this->session->flashdata('msg')){ ?>
-    $('.confirm-div').html('<?php echo "<p>"."&nbsp;&nbsp;&nbsp;".$this->session->flashdata('msg');"</p>" ?>').fadeIn( "slow").fadeOut(4500);
+    $('.confirm-div').html('<?php echo "<p>"."&nbsp;&nbsp;&nbsp;".$this->session->flashdata('msg');"</p>" ?>').fadeIn( "slow").fadeOut(9500);
     });
     <?php } ?>
  </script>
@@ -150,6 +150,13 @@ $(function() {
       });
     </script>
 
+<script>
+  $(function() {
+  $('#datetimepicker1').datetimepicker({
+    language: 'pt-BR'
+  });
+});
+</script>
 
  </body>
 </html>

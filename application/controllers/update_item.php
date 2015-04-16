@@ -26,49 +26,49 @@ class Update_item extends CI_Controller
     
     public function update_item_individual()
     {
-    if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {    
-        $id             = $this->input->post('id', TRUE);
-        $item_category  = $this->input->post('item_category', TRUE);
-        $item_quantity  = $this->input->post('item_quantity', TRUE);
-        $item_quantity1 = $this->input->post('item_quantity1', TRUE);
-        $company_name   = $this->input->post('company_name', TRUE);
-        $item_date      = $this->input->post('item_date', TRUE);
-        $invoice_no     = $this->input->post('invoice_no', TRUE);
-        
-        if ($this->input->post('submit') == 'add_qty') 
-        {
-            $this->item_model->do_add_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category);
-        } 
-        elseif ($this->input->post('submit') == 'sub_qty') 
-        {
-            $this->item_model->do_sub_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category);
-        } 
-        elseif ($this->input->post('submit') == 'update_info') 
-        {
-            $config['upload_path']   = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']      = '1024';
-            $config['max_width']     = '1024';
-            $config['max_height']    = '768';
-            $this->upload->initialize($config);
-            $this->load->library('upload', $config);
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {    
+            $id             = $this->input->post('id', TRUE);
+            $item_category  = $this->input->post('item_category', TRUE);
+            $item_quantity  = $this->input->post('item_quantity', TRUE);
+            $item_quantity1 = $this->input->post('item_quantity1', TRUE);
+            $company_name   = $this->input->post('company_name', TRUE);
+            $item_date      = $this->input->post('item_date', TRUE);
+            $invoice_no     = $this->input->post('invoice_no', TRUE);
+            
+            if ($this->input->post('submit') == 'add_qty') 
+            {
+                $this->item_model->do_add_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category);
+            } 
+            elseif ($this->input->post('submit') == 'sub_qty') 
+            {
+                $this->item_model->do_sub_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category);
+            } 
+            elseif ($this->input->post('submit') == 'update_info') 
+            {
+                $config['upload_path']   = './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '1024';
+                $config['max_width']     = '1024';
+                $config['max_height']    = '768';
+                $this->upload->initialize($config);
+                $this->load->library('upload', $config);
 
-             if(!$this->upload->do_upload())
-             {
-                $this->item_model->do_update_item_info_wo_photo($id, $item_category);   
+                 if(!$this->upload->do_upload())
+                 {
+                    $this->item_model->do_update_item_info_wo_photo($id, $item_category);   
+                 } 
+                 else
+                 {         
+                    $data = $this->upload->data();
+                    $this->thumb($data);             
+                    $this->item_model->do_update_item_info($id, $item_category, $data);   
+                }
              } 
-             else
-             {         
-                $data = $this->upload->data();
-                $this->thumb($data);             
-                $this->item_model->do_update_item_info($id, $item_category, $data);   
             }
-         } 
-        }
-        else {
-            redirect('login', 'refresh');
-        }        
-        
+            else {
+                redirect('login', 'refresh');
+            }        
+            
     }
 
     public function thumb($data)

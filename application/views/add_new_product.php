@@ -7,12 +7,12 @@
       <?php echo validation_errors(); ?>
       <div class="row form-wrapper">
          <?php echo form_open_multipart('item/do_add_item');?>
-        <div class="col-md-4 margin-bottom-15">
+        <div class="col-md-12 margin-bottom-15">
           <label for="firstName" class="control-label">Date</label>
           <input type="text" name = "item_date" class="form-control" id="datepicker" placeholder = "yyyy-mm-dd" required> 
         </div>
 
-        <div class="col-md-4 margin-bottom-15">
+        <div class="col-md-12 margin-bottom-15">
           <label for="firstName" class="control-label">Item Name</label>
           <input type="text" name = "name" class="form-control" id="firstName" value="" required> 
         </div>
@@ -27,7 +27,6 @@
          </div>
 
           <div class="col-md-4 margin-bottom-15">
-        
               <label for="firstName" class="control-label">Item No. / Product code</label>    <span id="usr_verify" class="verify1" ></span>
               <input type="text" name = "item_no" class="form-control" value="" autocomplete="off" id = "item_no" required> 
          </div>

@@ -36,14 +36,14 @@ class Item_model extends CI_Model
         );
         $this->db->insert('item', $row);
         $id = $this->db->insert_id();
-        
+     /*   
         $row2 = array(
             'name' => $item_name,
             'price' => $item_sell_price,
             'id' => $id
         );
         $this->db->insert('item_cart', $row2);
-             
+     */        
         $file = array(
             'img_name' => $data['raw_name'],
             'thumb_name' => $data['raw_name'] . '_thumb',
@@ -168,9 +168,9 @@ class Item_model extends CI_Model
     public function do_add_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category)
     {
         
-        $cal_date   = $item_date;
-        $format     = strtotime($cal_date);
-        $mysql_date = date('Y-m-d H:i:s', $format);
+       // $cal_date   = date('Y-m-d H:i:s');
+      //  $format     = strtotime($cal_date);
+        $mysql_date =  date('Y-m-d H:i:s');
         
         $this->db->select('*');
         $this->db->from('item');
@@ -199,9 +199,9 @@ class Item_model extends CI_Model
     
     public function do_sub_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category)
     {     
-        $cal_date   = $item_date;
-        $format     = strtotime($cal_date);
-        $mysql_date = date('Y-m-d H:i:s', $format);
+         //$cal_date   = $item_date;
+         //$format     = strtotime($cal_date);
+         $mysql_date =  date('Y-m-d H:i:s');
         
        if($item_quantity <= $item_quantity1) 
         {
@@ -391,7 +391,7 @@ class Item_model extends CI_Model
         $this->db->delete('item');
         
         $this->session->set_flashdata('msg', 'SUCCESFULLY delete');
-        redirect('main/inventory/' . $id);
+        redirect('main/inventory/');
     }
     
     public function retrieve_products()

@@ -12,11 +12,10 @@
 
   </head>
   <body>
-  <div id="main-wrapper">
-    <div class="template-page-wrapper nav_container">
+  <div class = "main-wrapper">
       <?php $attribute = Array ("Class "=>"form-horizontal templatemo-signin-form");
       echo Form_open ("verifylogin", $attribute); ?>
-       <div class ="login_container"> 
+       <div class ="login_container "> 
         <div class="form-group">
  
           <div class="col-md-12 ">
@@ -53,7 +52,6 @@
         </div>
       
       </form>
-    </div>
   </div>
 </body>
 </html>

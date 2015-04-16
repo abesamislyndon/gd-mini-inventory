@@ -147,7 +147,7 @@ Class User extends CI_Model
       $this->db->delete('users');
 
       $this->session->set_flashdata('msg', 'SUCCESSFULLY DELETE');
-      redirect('manage_user_accounts/account_list');
+      redirect('manageUser/account_list');
     }     
 
   

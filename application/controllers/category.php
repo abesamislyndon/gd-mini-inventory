@@ -33,6 +33,34 @@ class Category extends CI_Controller {
          }    
     }
 
+    
+      public function update_cat_info(){
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            $id = $this->uri->segment(3);
+            $data['cat_individual'] = $this->category_model->get_item($id);
+            $this->load->view('modal_form/update_cat_info', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+
+    public function do_update_cat_info(){
+
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {    
+         
+            $cat_name     = $this->input->post('cat_name', TRUE);
+            $id  = $this->input->post('id', TRUE); 
+            
+            if ($this->input->post('submit') == 'up_cat') 
+            {
+                $this->category_model->do_update_cat($cat_name, $id);
+            } 
+            else {
+                redirect('login', 'refresh');
+            }   
+          }
+       }
 }
 /* End of file category.php */
 /* Location: ./application/controllers/category.php */

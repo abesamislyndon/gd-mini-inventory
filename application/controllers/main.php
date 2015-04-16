@@ -98,11 +98,10 @@ class Main extends CI_Controller {
 	public function inventory()
 	{   
         
-    
         $config = array();
         $config["base_url"] = base_url().'main/inventory';
         $config["total_rows"] = $this->item_model->record_count();
-        $config["per_page"] = 12;
+        $config["per_page"] = 10;
         $config["uri_segment"] = 3;
         $config['full_tag_open'] = "<ul class='pagination'>";
 		$config['full_tag_close'] ="</ul>";
@@ -119,12 +118,14 @@ class Main extends CI_Controller {
 		$config['last_tag_open'] = "<li>";
 		$config['last_tagl_close'] = "</li>";
  
-        $this->pagination->initialize($config);
+      $this->pagination->initialize($config);
         $search_data = $this->input->post('search_data', TRUE);
- 
+        
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+       
         $data["item_dashboard_details"] = $this->item_model->fetch_item($config["per_page"], $page, $search_data);
         $data["links"] = $this->pagination->create_links();
+        $data['pid'] = $this->uri->segment(3);
        
         if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
         {

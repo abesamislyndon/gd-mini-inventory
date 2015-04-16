@@ -2,7 +2,11 @@
 session_start();
 class ManageUser extends CI_Controller
 {
-
+  function __construct()
+   {
+     parent::__construct();
+     $this->load->model('user');
+   }
 	
 	public function  add_user()
 	{
@@ -40,6 +44,29 @@ class ManageUser extends CI_Controller
         redirect('login', 'refresh');
       } 
   	}
+
+    public function account_list()
+    {
+       if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+       {   
+            $data['list'] = $this->user->user_all_list();
+     
+            $this->load->view('scaffolds/header');
+            $this->load->view('scaffolds/sidebar');
+            $this->load->view('userlist', $data);
+            $this->load->view('scaffolds/footer');  
+       }
+      else{
+         redirect('login', 'refresh');
+       }
+
+    }
+  public function del_user()
+    {   
+        $id = $this->uri->segment(3);
+        $delete =  $this->user->do_user_del($id);
+    }
+
 }
 
 

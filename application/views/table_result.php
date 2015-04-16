@@ -24,21 +24,18 @@
            <div class="row">
              <div class="col-md-12 details">
               <div class="table-responsive table-container"> 
-               <table class="table-main">
-                 <thead>
+                 <table class="table table-main " id = "search_table">
+                <thead>
                  <tr>
                    <th width = "10%" style = "font-size:11px"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;</th>
-                    <th width = "25%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">ITEM NAME</span></th>
-                    <th width = "10%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">ITEM NO.</span></th>
-                    <th width = "15%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">BRAND</span></th>
-                    <th width = "10%" style = "font-size:11px"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;<span class = "hide-text">CATEGORY</span></th>
-                    <th width = "12%" style = "font-size:11px"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">SP (SGD)</span></th>
-                    <th width = "20%" style = "font-size:11px"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">PP (SGD)</span></th>
-                    <th width = "12%" style = "font-size:11px"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">QTY</span></th>
-                    <th><i class="fa fa-plus-circle"></i></th>
-                    <th><i class="fa fa-minus-circle"></i></th>
-                    <th><i class="fa fa-clock-o"></i></th>
-                    <th><i class="fa fa-pencil-square-o"></i></th>
+                    <th width = "25%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">ITEM DESCRIPTION</span></th>
+                    <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">SP (SGD)</span></th>
+                    <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">PP (SGD)</span></th>
+                    <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">QTY</span></th>
+                    <th style = "text-align:center;">add item</th>
+                    <th style = "text-align:center;">subtract item</th>
+                    <th style = "text-align:center;">view item history</th>
+                    <th style = "text-align:center;"><i class="fa fa-pencil-square-o"></i></th>
                    </tr>
                  </thead>
 
@@ -47,18 +44,21 @@
                   foreach($search_item as $details): ?>
                   <tbody>
                   <tr>
+                    <!-- check if no photo attach-->
+                    <?php if($details['img_name'].$details['ext'] == '') {?>
+                    <td><img src="<?php echo base_url("uploads/")?>/default.jpg" class = "img-details"></td>
+                    <?php }else{?>
                     <td><img src="<?php echo base_url("uploads/")?>/<?php echo $details['img_name'].$details['ext'] ?>" class = "img-details"></td>
-                    <td><?php echo $details['name'] ?></td>
-                    <td class = "td"><?php echo $details['item_no']?></td>
-                    <td class = "td"><?php echo $details['brand']?></td>      
-                    <td><?php echo $details['cat_name'] ?></td>
-                    <td><?php echo $details['price'] ?></a></td>
-                    <td><?php echo $details['item_pur_price'] ?></td>
+                    <?php } ?>
+                    
+                    <td><?php echo $details['name'] ?><br><span class = "sub-desc">Item no:&nbsp;<?php echo $details['item_no']?></span><br><span class = "sub-desc-cat">Category: &nbsp;<?php echo $details['cat_name'] ?></span></td>
+                    <td style = "text-align:center;" ><?php echo $details['price'] ?></a></td>
+                    <td style = "text-align:center;" ><?php echo $details['item_pur_price'] ?></td>
                     <td style = "font-size:14px;color:#000;font-style:italic;font-weight:bold;"><?php echo $details['item_quantity']?></a></td>
-                    <td><a href="#add_modal" role="button"  class = "button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#add_modal .modal-body"><i class="fa fa-plus-circle"></i></a></td>
-                    <td><a href="#sub_modal" role="button"  class = "button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#sub_modal .modal-body"><i class="fa fa-minus-circle"></i></a></td>
-                    <td><a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details['id'] ?>" role="button"  class = "button2"><i class="fa fa-clock-o"></i></a></td>
-                
+                    <td style = "text-align:center;"><br><a href="#add_modal" role="button"  class = "button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#add_modal .modal-body">add &nbsp;<i class="fa fa-plus-circle"></i></a></td>
+                    <td style = "text-align:center;"><br><a href="#sub_modal" role="button"  class = "button1" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#sub_modal .modal-body">sub&nbsp;<i class="fa fa-minus-circle"></i></a></td>
+                    <td style = "text-align:center;"><br><a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details['id'] ?>" role="button"  class = "button2">history&nbsp;<i class="fa fa-clock-o"></i></a></td>
+                  
                     <td>  
                        <div class="btn-group pull-right">
                         <button type="button" class="button3 dropdown-toggle" data-toggle="dropdown">
@@ -80,8 +80,8 @@
       
      
         <?php echo form_open_multipart('update_item/update_item_individual');?>
-        <div id="add_modal" class="modal fade"  id="myModal" tabindex="-1" role="dialog">
-          <div class="modal-dialog">
+           <div id="add_modal" class="modal modal2"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+       <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header header-add">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -96,7 +96,7 @@
           </div>
       </div><!--modal for stock in-->
 
-    <div id="sub_modal" class="modal fade"  id="myModal" tabindex="-1" role="dialog">
+    <div id="sub_modal" class="modal"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header header-sub">
@@ -115,7 +115,7 @@
       </div><!--modal for stock out-->
       
 
-    <div id="history" class="modal fade"  id="myModal" tabindex="-1" role="dialog">
+    <div id="history" class="modal"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog history">
             <div class="modal-content">
                 <div class="modal-header header-history">
@@ -130,7 +130,7 @@
           </div>
        </div>
 
-      <div id="edit_modal" class="modal fade"  id="myModal" tabindex="-1" role="dialog">
+      <div id="edit_modal" class="modal "  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header header-add">

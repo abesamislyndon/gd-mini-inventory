@@ -16,6 +16,7 @@ class Transaction extends CI_Controller {
         $data['transaction_details'] = $this->item_model->item_history($id);
         $data['print_details'] = $this->item_model->item_history_print($id);
         $data['transaction_group'] = $this->item_model->item_history_group($id);
+        $data['pid'] = $this->uri->segment(4);
       
         $this->load->view('scaffolds/header'); 
         $this->load->view('scaffolds/sidebar');
@@ -37,6 +38,7 @@ class Transaction extends CI_Controller {
         $data['transaction_details'] = $this->item_model->item_history_individual($id);
         $data['transaction_details1'] = $this->item_model->item_history_individual1($id);
         $data['transaction_group'] = $this->item_model->item_history_group($id);
+        $data['pid'] = $this->uri->segment(3);
 
         $this->load->view('scaffolds/header'); 
         $this->load->view('scaffolds/sidebar');

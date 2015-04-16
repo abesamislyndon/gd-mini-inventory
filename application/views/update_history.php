@@ -2,7 +2,7 @@
     <div class="templatemo-content">
           <?php foreach($transaction_details as $details): ?>
                  <h1><i class="fa fa-clock-o"></i>&nbsp;&nbsp;UPDATE ITEM HISTORY <?php echo $details->name ?></h1>
-                <a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details->id?>" class = "goback1">BACK</a>
+                <a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details->id?>" class = "goback2">GO BACK</a>
               <?php endforeach;?>
       <div class = "row">
          <div class = "col-md-6">

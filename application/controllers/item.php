@@ -16,7 +16,7 @@ class Item extends CI_Controller {
 	{  
      if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-            $data['category'] = $this->category_model->show_category();
+        $data['category'] = $this->category_model->show_category();
     		$this->load->view('scaffolds/header'); 
     		$this->load->view('scaffolds/sidebar');
     		$this->load->view('add_new_product',$data);
