@@ -1,12 +1,12 @@
 <?php foreach($item_individual as $details): ?>
     <div class="row">
-    <div class="col-md-10 item-details-modal"> 
+    <div class="col-md-7 item-details-modal"> 
      <h1><?php echo $details->name ?></h1>
      <p><i class="fa fa-database"></i>&nbsp;&nbsp;Item Quantity:&nbsp;<?php echo $details->item_quantity ?></p>
      <p><i class="fa fa-money"></i>&nbsp;&nbsp;Sell Price:&nbsp;<?php echo $details->price?></p>
      <p><i class="fa fa-money"></i>&nbsp;&nbsp;Purchase Price:&nbsp;<?php echo $details->item_pur_price ?></p>
    </div>
-    <div class="col-md-2">
+    <div class="col-md-5">
          <?php if($details->img_name.$details->ext == '') {?>
                         <img src="<?php echo base_url("uploads/")?>/default.jpg" class = "img-details-medium"></td>
                     <?php }else{ ?>
@@ -38,8 +38,5 @@
                <input type="text" name = "company_name" class="form-control" value="" required> 
               </div><!--end of margin-bottom-15-->  
         </div><!--end of -->
-      </form>
-
-
   </div><!--end of template-container-->
 

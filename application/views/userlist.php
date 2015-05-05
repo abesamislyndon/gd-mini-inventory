@@ -37,8 +37,8 @@
                               <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a href="<?php echo base_url();?>manage_user_accounts/update_user/<?php echo $individual->id?>" role="button" data-toggle="modal" data-load-remote="" data-remote-target="#edit_modal .modal-body"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit Username</a></li>
-                              <li><a href="<?php echo base_url();?>manage_user_accounts/update_user_pwd/<?php echo $individual->id?>" role="button" data-toggle="modal" data-load-remote="" data-remote-target="#edit_modal .modal-body"><i class="fa fa-key"></i></i>&nbsp;&nbsp;Edit Password</a></li>
+                              <li><a href="<?php echo base_url();?>manageUser/update_user/<?php echo $individual->id?>"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit Username</a></li>
+                              <li><a href="<?php echo base_url();?>manageUser/update_user_pwd/<?php echo $individual->id?>"><i class="fa fa-key"></i></i>&nbsp;&nbsp;Edit Password</a></li>
                               <li><a href="<?php echo base_url();?>manageUser/del_user/<?php echo $individual->id?>" class  =  "delete_item" ><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete</a></li>
                             </ul>
                         </div>

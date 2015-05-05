@@ -41,6 +41,8 @@ class Item extends CI_Controller {
             $item_pur_price = $this->input->post('item_pur_price', TRUE);
             $item_quantity = $this->input->post('item_quantity', TRUE);
             $brand = $this->input->post('brand', TRUE);
+            $spec = $this->input->post('spec', TRUE);
+
             $id = $this->uri->segment(3);    
             if ($this->input->post('submit')) 
             {    
@@ -60,13 +62,13 @@ class Item extends CI_Controller {
              
                 $data = $this->upload->data();
                 $this->thumb($data);             
-                $this->item_model->do_insert_item($item_name, $item_category, $item_no, $item_date,$item_sell_price,$item_pur_price,$item_quantity, $data,$brand);    
+                $this->item_model->do_insert_item($item_name, $item_category, $item_no, $item_date,$item_sell_price,$item_pur_price,$item_quantity, $data,$brand, $spec);    
                } 
               else 
               {
                 $data = $this->upload->data();
                 $this->thumb($data);             
-                $this->item_model->do_insert_item($item_name, $item_category, $item_no, $item_date,$item_sell_price,$item_pur_price,$item_quantity, $data,$brand);    
+                $this->item_model->do_insert_item($item_name, $item_category, $item_no, $item_date,$item_sell_price,$item_pur_price,$item_quantity, $data,$brand, $spec);    
               }
          } 
          else 
@@ -296,6 +298,19 @@ class Item extends CI_Controller {
   }
   
 
+  public function item_spec()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            $id                      = $this->uri->segment(3);
+            $data['category']        = $this->category_model->show_category();
+            $data['item_individual'] = $this->item_model->get_item($id);
+       
+
+            $this->load->view('modal_form/spec', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
 
 
 }

@@ -17,9 +17,16 @@
           <input type="text" name = "name" class="form-control" id="firstName" value="" required> 
         </div>
 
+
+        <div class="col-md-12 margin-bottom-15">
+          <label for="firstName" class="control-label">Specification</label>
+          <textarea class = "spec myTextEditor" name="spec" id=""></textarea>
+        </div>
+
          <div class="col-md-4 margin-bottom-15">                       
           <label for="singleSelect">Category</label>
             <select name = "id_cat" class="form-control" id="singleSelect">
+              <option value = "" selected>-</option>
              <?php foreach($category as $cat_details):?> 
               <option value = "<?php echo $cat_details->cat_id ?>"><?php echo $cat_details->cat_name ?></option>
             <?php endforeach; ?>
@@ -63,8 +70,8 @@
               <input type = "submit" name  = "submit" value= "&#xf055; ADD ITEM" class = "button">
           </div>
          </form>
+         <br><br><br><br><br><br>
       </div>
     </div>
   </div>
 </div><!--end of templatemo-content-wrapper-->
-

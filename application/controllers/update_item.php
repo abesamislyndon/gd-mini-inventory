@@ -18,6 +18,8 @@ class Update_item extends CI_Controller
             $id                      = $this->uri->segment(3);
             $data['category']        = $this->category_model->show_category();
             $data['item_individual'] = $this->item_model->get_item($id);
+       
+
             $this->load->view('modal_form/update_in_out_item', $data);
         } else {
             redirect('login', 'refresh');
@@ -71,6 +73,7 @@ class Update_item extends CI_Controller
             
     }
 
+
     public function thumb($data)
     {
         $config['image_library']  = 'gd2';
@@ -90,6 +93,8 @@ class Update_item extends CI_Controller
             $id = $this->uri->segment(3);
             $this->load->model("item_model");
             $data['item_individual'] = $this->item_model->get_item($id);
+            $data['category']        = $this->category_model->show_category();
+
             $this->load->view('modal_form/update_item_info', $data);
         } else {
             redirect('login', 'refresh');

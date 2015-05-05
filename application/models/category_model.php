@@ -15,6 +15,18 @@ class Category_model extends CI_Model
     }
 
 
+    function show_category_update($id)
+    {
+
+       $this->db->select('*');
+       $this->db->from('item');
+       $this->db->join('item_category', 'item.item_category = item_category.cat_id', 'inner');
+       $query = $this->db->get();
+       return $result = $query->result();
+
+    }
+
+
     function do_insert_category($category)
       {
 				$category = $this->input->post('cat_name', TRUE);

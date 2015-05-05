@@ -61,14 +61,92 @@ class ManageUser extends CI_Controller
        }
 
     }
-  public function del_user()
+ 
+    public function del_user()
     {   
         $id = $this->uri->segment(3);
         $delete =  $this->user->do_user_del($id);
     }
 
+
+    public function update_user()
+    {
+       if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+       {  
+            $id = $this->uri->segment(3);
+            $data['individual'] = $this->user->user_update_individual($id);
+
+            $this->load->view('scaffolds/header');
+            $this->load->view('scaffolds/sidebar');
+            $this->load->view('update_user', $data);
+            $this->load->view('scaffolds/footer');  
+
+       }
+        else
+        {
+         redirect('login', 'refresh');
+       }
+
+    }
+
+    public  function  do_update_user(){
+
+      if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+       {   
+            if($this->input->post('submit')) 
+            {
+             $this->user->do_user_update_individual();
+            }
+        }else{
+         redirect('login', 'refresh');
+       }     
+
+    }
+
+    public function update_user_pwd()
+    {
+       if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+       {  
+            $id = $this->uri->segment(3);
+            $data['individual'] = $this->user->user_update_individual($id);
+
+            $this->load->view('scaffolds/header');
+            $this->load->view('scaffolds/sidebar');
+            $this->load->view('update_password',$data);
+            $this->load->view('scaffolds/footer');
+       }
+        else
+        {
+         redirect('login', 'refresh');
+       }
+
+    }
+
+
+  public function do_update_user_pwd()
+    {
+       if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+       {  
+  
+         $id = $this->input->post('id');
+         $password = $this->input->post('password');
+         $new_password = $this->input->post('new_password');
+         $confirm_password = $this->input->post('confirm_password');
+        
+        if ($this->input->post('submit')) 
+        {
+          $this->user->do_user_update_pwd($id ,$password, $new_password, $confirm_password);
+        }
+      } 
+        else
+        {
+         redirect('login', 'refresh');
+       }
+
+    }    
+
 }
 
 
-/* End of file .php */
-/* Location: ./application/controllers/main.php */
+/* End of manageUser .php */
+/* Location: ./application/controllers/manageUser.php */

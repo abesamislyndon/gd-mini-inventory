@@ -397,7 +397,7 @@ table.form{
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   text-decoration: none;
-font-family: 'Montserrat', sans-serif, FontAwesome;
+  font-family: 'Montserrat', sans-serif, FontAwesome;
 }
 
 .button1 {
@@ -411,7 +411,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  font-size:13px;  
+  font-size:11px;  
   color: rgba(255,255,255,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -430,6 +430,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif, FontAwesome;
 }
 .button1:hover{
   display: inline-block;
@@ -439,10 +440,9 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-   font-size:13px;   
+  font-size:11px;   
   color:#0e81b6; 
- background: #23b6f9;
-  -webkit-box-shadow: 1px 1px 0 0 #174d02 ;
+  background: #23b6f9;
   box-shadow: 1px 1px 0 0 #174d02 ;
   -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -465,7 +465,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  font-size:13px;  
+  font-size:11px;  
   color: rgba(255,255,255,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -484,6 +484,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif, FontAwesome;
 }
 
 .button2:hover{
@@ -494,8 +495,8 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-   font-size:13px;   
-  color:#e2b607;
+   font-size:11px;   
+  color:#bdbdbd;
   -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -515,7 +516,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  font-size:13px;  
+  font-size:11px;  
   color: rgba(255,255,255,0.9);
   -o-text-overflow: clip;
   text-overflow: clip;
@@ -534,6 +535,7 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif, FontAwesome;
 }
 
 .button3:hover{
@@ -544,8 +546,59 @@ font-family: 'Montserrat', sans-serif, FontAwesome;
   font-weight: bold;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-   font-size:13px;   
-  color:#e2b607;
+   font-size:11px;   
+  color:#ffcdd2;
+  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  text-decoration: none;
+
+}
+
+.button4 {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  padding:8px; 
+  border: none;
+  font-weight: bold;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  font-size:11px;  
+  color: rgba(255,255,255,0.9);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #FB8C00;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: 24px auto;
+  background-size: 24px auto;
+  -webkit-box-shadow: 1px 1px 0 0 #e2b607;
+  box-shadow: 1px 1px 0 0 #db4334;
+  text-shadow: 1px 1px 0 rgba(168,168,168,0.66) ;
+  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif, FontAwesome;
+}
+
+.button4:hover{
+  display: inline-block;
+  cursor: pointer;
+  padding:8px; 
+  border: none;
+  font-weight: bold;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+   font-size:11px;   
+  color:#000;
   -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
@@ -637,15 +690,20 @@ hr.sidebar-hr{
     width:140px;
     height: auto; 
     border: 1px #ccc solid;
-    padding:20px !important; 
     background:#fff; 
     position:relative;
-    margin-left: -100px; 
-    margin-top:60px;
+    float:right;
+}
+.img-details-large{
+    width:240px;
+    height: auto; 
+    border: 1px #ccc solid;
+    background:#fff; 
+    position:relative;
+    float:right;
 }
 .img-details-supplier{
     width:18px;
-    height: auto;
     height: auto; 
 }
 
@@ -704,9 +762,8 @@ ul.pagination a{
 ------------------------------------------------------*/
 
 .modal-dialog{
-  width:600px; 
+  width:900px; 
 }
-
 .header-add{
   background:rgb(125,213,105);
   color: #fff;
@@ -721,6 +778,10 @@ ul.pagination a{
 }
 .header-edit{
   background:#e74c3c;
+  color: #fff;
+}
+.header-spec{
+  background:#FF8F00;
   color: #fff;
 }
 .modal-footer{
@@ -812,6 +873,15 @@ input[type= "text"].text_quote
   text-align: center;
   border: 1px solid #ccc;
 }
+textarea.spec{
+ width:100%;
+  height:130px;  
+  padding: 0px 7px;
+  border: 1px solid #ccc;
+  padding:20px; 
+  background:#eee; 
+}
+
 .empty
 {
   text-align: center;
@@ -1045,8 +1115,18 @@ a:hover.tooltips span {
 input {
     -webkit-appearance: none;
     border-radius: 0;
-
 }
+
+input[type = "text"].form-control{
+  background:#F5F5F5; 
+}
+input[type = "password"].form-control{
+  background:#F5F5F5; 
+}
+.form-control{
+  color:#000;
+}
+
 input[type = "text"].custom-input{
   border:1px solid #81C784; 
 }
@@ -1073,6 +1153,7 @@ input[type = "submit"].custom-btn
 }
 .table-main th
 {
+  text-align: left;
   padding:12px;
   border-top:1px solid #ccc !important;
   border-bottom:1px solid #ccc !important;  

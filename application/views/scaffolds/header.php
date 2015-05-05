@@ -12,7 +12,14 @@
   <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src = "<?php echo base_url();?>assets/js/active.js"></script>
-
+  <script src="<?php echo base_url();?>assets/tiny_mce/tiny_mce.js"></script>
+  <script type="text/javascript">
+    tinyMCE.init({
+        mode : "specific_textareas",
+        editor_selector : "myTextEditor",
+        theme : "simple"
+    });
+  </script>
 <script>
 function searchItem(){
   xmlhttp= new XMLHttpRequest();
@@ -51,3 +58,5 @@ function goBack() {
       </div><!--navbar-header--> 
    </div><!--navbar-inverse-->
  <div class="template-page-wrapper wr">
+
+

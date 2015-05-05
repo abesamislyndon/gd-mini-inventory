@@ -26,16 +26,17 @@
               <div class="table-responsive table-container"> 
                  <table class="table table-main " id = "search_table">
                 <thead>
-                 <tr>
+                  <tr>
                    <th width = "10%" style = "font-size:11px"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;</th>
-                    <th width = "25%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">ITEM DESCRIPTION</span></th>
+                    <th width = "25%" style = "font-size:11px"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;<span class = "hide-text">Item Description</span></th>
                     <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">SP (SGD)</span></th>
                     <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-money"></i>&nbsp;&nbsp;<span class = "small-text">PP (SGD)</span></th>
-                    <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">QTY</span></th>
-                    <th style = "text-align:center;">add item</th>
-                    <th style = "text-align:center;">subtract item</th>
-                    <th style = "text-align:center;">view item history</th>
-                    <th style = "text-align:center;"><i class="fa fa-pencil-square-o"></i></th>
+                    <th width = "10%" style = "font-size:11px;text-align:center;"><i class="fa fa-database"></i>&nbsp;&nbsp;<span class = "small-text">Qty</span></th>
+                    <th style = "font-size:12px;color:#000;font-weight:bold;text-align:center;">Specification</th>
+                    <th style = "font-size:12px;color:#000;font-weight:bold;text-align:center;">Add item</th>
+                    <th style = "font-size:12px;color:#000;font-weight:bold;text-align:center;">Subtract item</th>
+                    <th style = "font-size:12px;color:#000;font-weight:bold;text-align:center;"></i>Item history</th>
+                     <th style = "font-size:12px;color:#000;font-weight:bold;text-align:center;"><i class="fa fa-pencil-square-o"></i></th>
                    </tr>
                  </thead>
 
@@ -55,14 +56,17 @@
                     <td style = "text-align:center;" ><?php echo $details['price'] ?></a></td>
                     <td style = "text-align:center;" ><?php echo $details['item_pur_price'] ?></td>
                     <td style = "font-size:14px;color:#000;font-style:italic;font-weight:bold;"><?php echo $details['item_quantity']?></a></td>
+                  
+                    <td><br><a href="#spec" role="button"  class = "button4" data-toggle="modal" data-load-remote="<?php echo base_url();?>item/item_spec/<?php echo $details['id'] ?>" data-remote-target="#spec .modal-body">Spec&nbsp;<i class="fa fa-newspaper-o"></i></a></td>
+
                     <td style = "text-align:center;"><br><a href="#add_modal" role="button"  class = "button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#add_modal .modal-body">add &nbsp;<i class="fa fa-plus-circle"></i></a></td>
                     <td style = "text-align:center;"><br><a href="#sub_modal" role="button"  class = "button1" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#sub_modal .modal-body">sub&nbsp;<i class="fa fa-minus-circle"></i></a></td>
                     <td style = "text-align:center;"><br><a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details['id'] ?>" role="button"  class = "button2">history&nbsp;<i class="fa fa-clock-o"></i></a></td>
                   
                     <td>  
                        <div class="btn-group pull-right">
-                        <button type="button" class="button3 dropdown-toggle" data-toggle="dropdown">
-                          <span class="caret"></span>
+                        <br><button type="button" class="button3 dropdown-toggle" data-toggle="dropdown">
+                          option<span class="caret"></span>
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -75,6 +79,24 @@
                     
                   </tr>      
                </tbody>
+
+               <div id="spec" class="modal modal2"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header header-spec">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-newspaper-o"></i>&nbsp;SPECIFICATION</h4>
+                            </div>
+                          <div class="modal-body"></div>
+                               <div class="modal-footer">
+                                <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                            </div>  
+                        </div>
+                    </div>
+                 </div><!--modal for stock in-->
+
+
+
                <?php endforeach; }?><!--END OF FOREACH LOOP FOR ITEM FROM $item_dashboard_details ARRAY--> 
             </table><!-- ****************************************** END OF TABLE FOR ALL LIST ITEMS ******************************* -->
       
@@ -133,7 +155,7 @@
       <div id="edit_modal" class="modal "  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
           <div class="modal-dialog">
               <div class="modal-content">
-                  <div class="modal-header header-add">
+                  <div class="modal-header header-edit">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       <h4 class="modal-title"><i class="fa fa-plus-circle"></i>&nbsp;EDIT INFORMATION</h4>
                   </div>
@@ -157,6 +179,7 @@
        </div>
      </div><!--end of templatemo-content-->
   </div><!--end of templatemo-content-wrapper-->
+
 
 
 

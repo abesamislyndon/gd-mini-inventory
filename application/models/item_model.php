@@ -16,13 +16,13 @@ class Item_model extends CI_Model
 
 
     
-    public function do_insert_item($item_name, $item_category, $item_no, $item_date, $item_pur_price, $item_sell_price, $item_quantity, $data, $brand)
+    public function do_insert_item($item_name, $item_category, $item_no, $item_date, $item_pur_price, $item_sell_price, $item_quantity, $data, $brand, $spec)
     {
     
         $cal_date   = $item_date;
         $format     = strtotime($cal_date);
         $mysql_date = date('Y-m-d H:i:s', $format);
-            
+
         $row = array(
             'name' => $item_name,
             'id_cat' => $item_category,
@@ -32,8 +32,10 @@ class Item_model extends CI_Model
             'item_pur_price' => $item_pur_price,
             'price' => $item_sell_price,
             'item_quantity' => $item_quantity,
-            'brand' => $brand
+            'brand' => $brand,
+            'spec'=>$spec
         );
+
         $this->db->insert('item', $row);
         $id = $this->db->insert_id();
      /*   
@@ -59,7 +61,10 @@ class Item_model extends CI_Model
         $this->db->insert('uploads', $file);
         $this->session->set_flashdata('msg', 'item succesfully added');
         redirect('item/add_item');
-    }
+     
+           
+        }
+
 
 
  public function  check_item_no_exist($item_no)
@@ -81,6 +86,7 @@ class Item_model extends CI_Model
         $this->db->select('*');
         $this->db->from('item');
         $this->db->join('uploads', 'item.id = uploads.id', 'inner');
+        $this->db->join('item_category', 'item.item_category = item_category.cat_id', 'inner');
         $this->db->where('item.id', $id)->group_by('item.id');
         $query = $this->db->get();
         return $result = $query->result();
@@ -95,7 +101,7 @@ class Item_model extends CI_Model
     {
         $this->db->from('item');
         $this->db->join('uploads', 'item.id = uploads.id', 'inner');
-        $this->db->join('item_category', 'item.id_cat = item_category.cat_id', 'inner');
+        $this->db->join('item_category', 'item.item_category = item_category.cat_id', 'inner');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -386,7 +392,7 @@ class Item_model extends CI_Model
     
     public function do_delete_item($id, $item_category)
     {
-        
+        $this->db->select('*');
         $this->db->where('id', $id);
         $this->db->delete('item');
         
@@ -422,7 +428,7 @@ class Item_model extends CI_Model
         $this->db->select('cat_name');
         $this->db->select('item_category, COUNT(item_category) as total');
         $this->db->from('item');
-        $this->db->join('item_category', 'item.id_cat = item_category.cat_id', 'inner');
+        $this->db->join('item_category', 'item.item_category = item_category.cat_id', 'inner');
         $this->db->group_by('item.item_category');
         $this->db->order_by('total', 'desc');
         $query = $this->db->get();

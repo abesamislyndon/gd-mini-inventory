@@ -52,22 +52,6 @@ Class User extends CI_Model
           return $query->result();
     }
 
-    function do_user_update_individual($id, $full_name, $tel_no, $username, $password, $role_code)
-   {
-
-        $data = array(
-         'full_name'=>$full_name,
-         'tel_no'=>$tel_no,
-         'username'=>$username,
-         //'password'=>md5($password),
-         'role_code'=>$role_code
-        );
-
-        $this->db->where('id', $id);
-        $this->db->update('users', $data);
-        $this->session->set_flashdata('msg', 'SUCCESFULLY ADDED USER');
-        redirect('manage_user_accounts/update_user?id='. $id);
-    }
 
    function do_user_update_pwd($id,  $password, $new_password, $confirm_password)
    {
@@ -91,14 +75,38 @@ Class User extends CI_Model
              $this->db->where('id', $id);
              $this->db->update('users', $data);
              $this->session->set_flashdata('msg', 'SUCCESFULLY UPDATED PASSWORD USER');
-             redirect('manage_user_accounts/update_user_pwd/'. $id);
+             redirect('manageUser/update_user_pwd/'. $id);
            }
            else
            {
               $this->session->set_flashdata('msg', 'DID NOT MATCH NEW PASSSWORD OR OLD PASSWORD PROBLEM');
-              redirect('manage_user_accounts/update_user_pwd/'. $id);
+              redirect('manageUser/update_user_pwd/'. $id);
            }
     }
+
+  public   function do_user_update_individual()
+   {
+
+         $id = $this->input->post('id');
+
+         $full_name = $this->input->post('full_name');
+         $username = $this->input->post('username');
+         $role_code = $this->input->post('role_code');
+       //  $password = $this->input->post('password');
+        
+         $data = array(
+         'full_name'=>$full_name,
+         'username'=>$username,
+         //'password'=>md5($password),
+         'role_code'=>$role_code
+        );
+
+        $this->db->where('id', $id);
+        $this->db->update('users', $data);
+        $this->session->set_flashdata('msg', 'SUCCESFULLY UPDATED USER');
+        redirect('manageUser/update_user/'. $id);
+    }
+  
 
 
     function do_add_user_model($full_name, $username, $password, $password1, $role_code)
@@ -136,9 +144,7 @@ Class User extends CI_Model
                  redirect('manageUser/add_user');
       } 
     }
-     
-
-     
+          
     
     function do_user_del($id)
     {
@@ -150,7 +156,7 @@ Class User extends CI_Model
       redirect('manageUser/account_list');
     }     
 
-  
+
 }
 
 /* End of file user.php */
