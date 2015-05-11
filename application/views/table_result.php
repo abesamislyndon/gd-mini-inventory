@@ -2,8 +2,8 @@
   <div class="templatemo-content">
       <div class = "row">
          <div class = "col-md-6 print-container"> 
-            <h5><a href="<?php echo base_url();?>create_pdf/print_all_item_search" target = "_blank"><i class="fa fa-print">&nbsp;&nbsp;Searched item</i></a></h5>
-            <h5><a href="<?php echo base_url();?>create_pdf/print_all_item" target = "_blank"><i class="fa fa-print">&nbsp;&nbsp;all item</i></a></h5>
+            <h5><a href="<?php echo base_url();?>create_pdf/print_all_item_search" target = "_blank"><i class="fa fa-file-pdf-o button4">&nbsp;&nbsp;Generate pdf - Searched item</i></a></h5>
+            <h5><a href="<?php echo base_url();?>create_pdf/print_all_item" target = "_blank"><i class="fa fa-file-pdf-o button4">&nbsp;&nbsp;Generate pdf - all item</i></a></h5>
         </div>
          
          <div class = "col-md-6 pull-right">
@@ -72,6 +72,9 @@
                         <ul class="dropdown-menu" role="menu">
                            <input type = "hidden" name = "item_category" value = "<?php echo $details['item_category'] ?>">
                           <li><a href="#edit_modal" role="button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/update_item_info/<?php echo $details['id'] ?>" data-remote-target="#edit_modal .modal-body"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit</a></li>
+                          <li><a href="#spec_update" role="button" data-toggle="modal" data-load-remote="<?php echo base_url();?>item/update_item_spec/<?php echo $details['id'] ?>" data-remote-target="#spec_update .modal-body"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit Specification</a></li>
+                          <li></li>
+                          <li><hr><br></li>
                           <li><a href="<?php echo base_url();?>update_item/delete_item/<?php echo $details['id'] ?>" class  =  "delete_item" ><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a></li>
                         </ul>
                        </div>
@@ -94,13 +97,30 @@
                         </div>
                     </div>
                  </div><!--modal for stock in-->
-
-
-
                <?php endforeach; }?><!--END OF FOREACH LOOP FOR ITEM FROM $item_dashboard_details ARRAY--> 
             </table><!-- ****************************************** END OF TABLE FOR ALL LIST ITEMS ******************************* -->
       
      
+        <?php echo form_open_multipart('item/update_item_spec_invidual');?>
+                <div id="spec_update" class="modal modal2"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header header-spec">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-newspaper-o"></i>&nbsp;SPECIFICATION</h4>
+                            </div>
+                          <div class="modal-body"></div>
+                               <div class="modal-footer">
+                                 <button type="submit" class="btn btn-primary" name = "update_spec" value = "update specification"><i class="fa fa-check"></i>&nbsp;&nbsp;Update</button>
+                                <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                            </div>  
+                        </div>
+                    </div>
+                  </div><!--modal for stock in-->
+          </form>
+
+
+
         <?php echo form_open_multipart('update_item/update_item_individual');?>
            <div id="add_modal" class="modal modal2"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
        <div class="modal-dialog">
@@ -165,13 +185,12 @@
                      <div class="modal-footer">
                       <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</button>
                       <button type="submit" class="btn btn-primary" name = "submit" value = "update_info"><i class="fa fa-check"></i>&nbsp;&nbsp;Update</button>
-                  </div> 
-                
-              </div>
+                  </div>     
+            </div>
           </div>
-      </div>
+        </div>
     </form>     
-
+    <br><br><br><br><br><br>    
   </div><!--end of table-responsive -->
 </div>
 

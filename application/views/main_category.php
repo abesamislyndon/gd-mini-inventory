@@ -11,7 +11,6 @@
                   <input class="btn btn-default custom-btn" type="submit"  name = "submit" class = "search-submit" id = "submit" value = "&#xf002;">
                 </div>
                 </form>
-
              </div> 
           </div><!--end of search div-->
         </div><!--end of column 6 pull right div-->
@@ -63,15 +62,18 @@
                     <td style = "text-align:center;"><br><a href="#sub_modal" role="button"  class = "button1" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/item_details/<?php echo $details['id'] ?>" data-remote-target="#sub_modal .modal-body">sub&nbsp;<i class="fa fa-minus-circle"></i></a></td>
                     <td style = "text-align:center;"><br><a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details['id'] ?>" role="button"  class = "button2">history&nbsp;<i class="fa fa-clock-o"></i></a></td>
                   
-                   <td>  
+                     <td>  
                        <div class="btn-group pull-right">
                         <br><button type="button" class="button3 dropdown-toggle" data-toggle="dropdown">
-                          options<span class="caret"></span>
+                          option<span class="caret"></span>
                           <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                            <input type = "hidden" name = "item_category" value = "<?php echo $details['item_category'] ?>">
                           <li><a href="#edit_modal" role="button" data-toggle="modal" data-load-remote="<?php echo base_url();?>update_item/update_item_info/<?php echo $details['id'] ?>" data-remote-target="#edit_modal .modal-body"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit</a></li>
+                          <li><a href="#spec_update" role="button" data-toggle="modal" data-load-remote="<?php echo base_url();?>item/update_item_spec/<?php echo $details['id'] ?>" data-remote-target="#spec_update .modal-body"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit Specification</a></li>
+                          <li></li>
+                          <li><hr><br></li>
                           <li><a href="<?php echo base_url();?>update_item/delete_item/<?php echo $details['id'] ?>" class  =  "delete_item" ><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a></li>
                         </ul>
                        </div>
@@ -98,9 +100,26 @@
 
                <?php endforeach; }?><!--END OF FOREACH LOOP FOR ITEM FROM $item_dashboard_details ARRAY--> 
             </table><!-- ****************************************** END OF TABLE FOR ALL LIST ITEMS ******************************* -->
-         <div class = "col-md-12 pagination">  
-          <p><?php echo $links; ?></p>
-         </div>
+
+         <?php echo form_open_multipart('item/update_item_spec_invidual');?>
+                <div id="spec_update" class="modal modal2"  id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header header-spec">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-newspaper-o"></i>&nbsp;SPECIFICATION</h4>
+                            </div>
+                          <div class="modal-body"></div>
+                               <div class="modal-footer">
+                                 <button type="submit" class="btn btn-primary" name = "update_spec" value = "update specification"><i class="fa fa-check"></i>&nbsp;&nbsp;Update</button>
+                                <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                            </div>  
+                        </div>
+                    </div>
+                  </div><!--modal for stock in-->
+          </form>
+
+         <div class = "col-md-12 pagination"><p><?php echo $links; ?></p></div>
 
      
         <?php echo form_open_multipart('update_item/update_item_individual');?>
@@ -171,13 +190,11 @@
                 
               </div>
           </div>
-      </div>
-    </form>     
-
+       </div>
+     </form>
+    <br><br><br><br><br><br>     
   </div><!--end of table-responsive -->
 </div>
-
-
        </div>
      </div><!--end of templatemo-content-->
   </div><!--end of templatemo-content-wrapper-->

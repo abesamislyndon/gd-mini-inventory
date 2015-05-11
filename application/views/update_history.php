@@ -6,7 +6,7 @@
               <?php endforeach;?>
       <div class = "row">
          <div class = "col-md-6">
-         <div class = ' print-container'>
+         <div class = ' print-container '>
         </div>  
         </div>
 

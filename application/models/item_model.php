@@ -1,5 +1,6 @@
 <?php
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 class Item_model extends CI_Model
 {
     public function item_dashboard_details()
@@ -15,15 +16,33 @@ class Item_model extends CI_Model
     }
 
 
+   public function item_check($item_name)
+    {
+        
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->where('name', $item_name);
+        
+        $query = $this->db->get();
+        return $result = $query->result();
+        
+    }
     
     public function do_insert_item($item_name, $item_category, $item_no, $item_date, $item_pur_price, $item_sell_price, $item_quantity, $data, $brand, $spec)
     {
-    
-        $cal_date   = $item_date;
-        $format     = strtotime($cal_date);
-        $mysql_date = date('Y-m-d H:i:s', $format);
+       
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->where('name', $item_name);
+        $query  = $this->db->get();
 
-        $row = array(
+        if ($query->num_rows() == 0) {
+
+            $cal_date   = $item_date;
+            $format     = strtotime($cal_date);
+            $mysql_date = date('Y-m-d H:i:s', $format);
+        
+           $row = array(
             'name' => $item_name,
             'id_cat' => $item_category,
             'item_category' => $item_category,
@@ -33,19 +52,19 @@ class Item_model extends CI_Model
             'price' => $item_sell_price,
             'item_quantity' => $item_quantity,
             'brand' => $brand,
-            'spec'=>$spec
+            'spec' => $spec
         );
-
+        
         $this->db->insert('item', $row);
-        $id = $this->db->insert_id();
-     /*   
+        $id   = $this->db->insert_id();
+        /*   
         $row2 = array(
-            'name' => $item_name,
-            'price' => $item_sell_price,
-            'id' => $id
+        'name' => $item_name,
+        'price' => $item_sell_price,
+        'id' => $id
         );
         $this->db->insert('item_cart', $row2);
-     */        
+        */
         $file = array(
             'img_name' => $data['raw_name'],
             'thumb_name' => $data['raw_name'] . '_thumb',
@@ -61,26 +80,31 @@ class Item_model extends CI_Model
         $this->db->insert('uploads', $file);
         $this->session->set_flashdata('msg', 'item succesfully added');
         redirect('item/add_item');
-     
-           
+       
         }
+        else{
 
-
-
- public function  check_item_no_exist($item_no)
-      {
+            $this->session->set_flashdata('msg', 'item exist');
+            redirect('item/add_item');
+             return TRUE;
+       
+            
+        } 
+        
+    }
+    
+    
+    public function check_item_no_exist($item_no)
+    {
         $this->db->where("item_no", $item_no);
         $query = $this->db->get("item");
-        if ($query->num_rows() > 0)
-            {
+        if ($query->num_rows() > 0) {
             return true;
-            }
-          else
-            {
+        } else {
             return false;
-            }
         }
-
+    }
+    
     public function get_item($id)
     {
         $this->db->select('*');
@@ -114,7 +138,7 @@ class Item_model extends CI_Model
         return false;
     }
     
-     
+    
     public function fetch_category($limit, $start, $id)
     {
         if ($id == 'SmallMachines') {
@@ -174,9 +198,9 @@ class Item_model extends CI_Model
     public function do_add_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category)
     {
         
-       // $cal_date   = date('Y-m-d H:i:s');
-      //  $format     = strtotime($cal_date);
-        $mysql_date =  date('Y-m-d H:i:s');
+        // $cal_date   = date('Y-m-d H:i:s');
+        //  $format     = strtotime($cal_date);
+        $mysql_date = date('Y-m-d H:i:s');
         
         $this->db->select('*');
         $this->db->from('item');
@@ -204,20 +228,19 @@ class Item_model extends CI_Model
     }
     
     public function do_sub_update_item($item_quantity, $id, $company_name, $item_quantity1, $item_date, $invoice_no, $item_category)
-    {     
-         //$cal_date   = $item_date;
-         //$format     = strtotime($cal_date);
-         $mysql_date =  date('Y-m-d H:i:s');
+    {
+        //$cal_date   = $item_date;
+        //$format     = strtotime($cal_date);
+        $mysql_date = date('Y-m-d H:i:s');
         
-       if($item_quantity <= $item_quantity1) 
-        {
-            $item_add = "item_quantity -" . $item_quantity; 
+        if ($item_quantity <= $item_quantity1) {
+            $item_add = "item_quantity -" . $item_quantity;
             $this->db->set('item_quantity', $item_add, FALSE);
             $this->db->where('id', $id);
             $this->db->update('item');
             $action = 'stock out';
             $bal    = $item_quantity1 - $item_quantity;
-       
+            
             $result = array(
                 'quantity_in' => $item_quantity,
                 'id' => $id,
@@ -227,15 +250,31 @@ class Item_model extends CI_Model
                 'stock_bal' => $bal,
                 'invoice_no' => $invoice_no
             );
-            $this->session->set_flashdata('msg', 'succesfully decrease item'); 
+            $this->session->set_flashdata('msg', 'succesfully decrease item');
             $this->db->insert('transaction', $result);
-        }
-        else
-        {
-        $this->session->set_flashdata('msg', 'ITEM QUANTIY MUST SMALLER OR EQUAL TO ACTUAL BALANCE'); 
+        } else {
+            $this->session->set_flashdata('msg', 'ITEM QUANTIY MUST SMALLER OR EQUAL TO ACTUAL BALANCE');
         }
         redirect('item/individual_update/' . $id);
     }
+
+
+        function do_add_update_spec($spec, $id){
+
+            $result = array(
+                'spec' => $spec,
+            );
+           
+            $this->db->select('*');
+            $this->db->from('item');
+            $this->db->where('id', $id);
+            $this->db->update('item', $result);
+            
+            $this->session->set_flashdata('msg', 'quantity updated');
+            redirect('item/individual_update/' . $id);
+
+        }
+
     
     public function item_history($id)
     {
@@ -248,7 +287,7 @@ class Item_model extends CI_Model
         return $result = $query->result();
         
     }
-
+    
     public function item_history_group($id)
     {
         $this->db->select('*');
@@ -271,11 +310,11 @@ class Item_model extends CI_Model
         return $result = $query->result();
         
     }
-        public function item_history_individual1($id)
+    public function item_history_individual1($id)
     {
         $this->db->select('*');
         $this->db->from('transaction');
-       // $this->db->join('item', 'item.id = transaction.id');
+        // $this->db->join('item', 'item.id = transaction.id');
         $this->db->where('transaction.transaction_id', $id);
         $query = $this->db->get();
         return $result = $query->result();
@@ -293,7 +332,23 @@ class Item_model extends CI_Model
         return $result = $query->result();
         
     }
+
+   public function item_history_print_search($id)
+    {
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->join('transaction', 'item.id = transaction.id', 'inner');
+        $this->db->where('transaction.company_name', 'Sunny Metal Pte Ltd ');
+        $this->db->where('transaction.id', $id)->group_by('transaction.id');
+        $query = $this->db->get();
+        return $result = $query->result();
+        
+    }
     
+
+
+
+
     public function do_update_item_info($id, $item_category, $data)
     {
         
@@ -317,8 +372,8 @@ class Item_model extends CI_Model
         
         $this->db->where('id', $id);
         $this->db->update('item', $row);
-
-
+        
+        
         $file = array(
             'img_name' => $data['raw_name'],
             'thumb_name' => $data['raw_name'] . '_thumb',
@@ -333,12 +388,12 @@ class Item_model extends CI_Model
         
         $this->db->where('id', $id);
         $this->db->update('uploads', $file);
-
+        
         
         $this->session->set_flashdata('msg', 'item info updated');
         redirect('item/individual_update/' . $id);
     }
-
+    
     public function do_update_item_info_wo_photo($id, $item_category)
     {
         $this->load->helper('date');
@@ -360,8 +415,8 @@ class Item_model extends CI_Model
         
         $this->db->where('id', $id);
         $this->db->update('item', $row);
-
-
+        
+        
         $this->session->set_flashdata('msg', 'item info updated');
         redirect('item/individual_update/' . $id);
     }
@@ -377,7 +432,7 @@ class Item_model extends CI_Model
         $row = array(
             'invoice_no' => $invoice_no,
             'item_date' => $mysql_date,
-             'company_name' => $company_name
+            'company_name' => $company_name
         );
         
         $this->db->from('transaction');
@@ -421,6 +476,55 @@ class Item_model extends CI_Model
         return $query->result_array();
         
     }
+
+    public function show_search_item_history($search, $item_id)
+    {
+        
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->join('transaction', 'item.id = transaction.id', 'inner');
+        $this->db->like('transaction.company_name', $search);
+        $this->db->where('transaction.id', $item_id);
+        $query = $this->db->get();
+        return $result = $query->result();
+
+
+    }
+
+
+  public function item_history_search($id, $search)
+    {
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->join('transaction', 'item.id = transaction.id', 'inner');
+        $this->db->like('transaction.company_name',$search);
+       // $this->db->where('transaction.company_name',$search);
+        $this->db->where('transaction.id', $id);
+        
+        $query = $this->db->get();
+        return $result = $query->result();
+        
+    }
+
+
+    public function show_item_history_print($search, $item_id)
+    {
+        
+        $this->db->select('*');
+        $this->db->from('item');
+        $this->db->join('transaction', 'item.id = transaction.id', 'inner');
+        $this->db->like('transaction.company_name', $search);
+        $this->db->where('transaction.id', $item_id)->group_by('transaction.id');
+        $query = $this->db->get();
+        return $result = $query->result();
+
+
+    }
+
+
+
+
+
     
     public function item_info_dashboard()
     {

@@ -3,8 +3,8 @@
       <div class="row">
          <div class="col-md-6">
             <br><br>
-            <?php foreach($print_details as $details): ?>
-            <div><a href="<?php echo base_url();?>create_pdf/print_history/<?php echo $details->id ?>" target = "_blank">&nbsp;<i class="fa fa-file-pdf-o button4">&nbsp;generate pdf</i></a></div>
+            <?php foreach($print_details1 as $details): ?>
+            <div><a href="<?php echo base_url();?>create_pdf/print_history_search/<?php echo $details->id ?>" target = "_blank">&nbsp;<i class="fa fa-file-pdf-o button4">&nbsp;generate pdf</i></a></div>
             <?php endforeach;?>  
          </div>
          <div class="col-md-6">
@@ -37,9 +37,11 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <a href="<?php echo base_url();?>main/inventory/<?php echo $pid; ?>" class = "goback2">GO BACK</a>
+                       <?php foreach($transaction_group as $details): ?>
+                     <a href="<?php echo base_url();?>transaction/transaction_item_details/<?php echo $details->id ?>" class = "goback2">GO BACK</a>
+                       <?php endforeach;?>  
                      <br><br>
-                     <?php foreach($transaction_details as $details): ?>
+                     <?php foreach($print_details as $details): ?>
                      <tr>
                         <td><?php $day = date('l', strtotime($details->item_date));$month = date(' F j, Y',strtotime($details->item_date)); echo $month; ?></td>
                         <td><?php echo $details->invoice_no ?></td>

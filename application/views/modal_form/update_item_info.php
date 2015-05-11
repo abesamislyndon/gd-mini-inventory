@@ -1,26 +1,25 @@
 <?php foreach($item_individual as $details): ?>
     <div class="row">
-    <div class="col-md-7 item-details-modal"> 
-     <h1><?php echo $details->name ?></h1>
-     <p><i class="fa fa-database"></i>&nbsp;&nbsp;Item Quantity:&nbsp;<?php echo $details->item_quantity ?></p>
-     <p><i class="fa fa-money"></i>&nbsp;&nbsp;Sell Price:&nbsp;<?php echo $details->price?></p>
-     <p><i class="fa fa-money"></i>&nbsp;&nbsp;Purchase Price:&nbsp;<?php echo $details->item_quantity ?></p>
-   </div>
+      <div class="col-md-7 item-details-modal"> 
+       <h1><?php echo $details->name ?></h1>
+       <p><i class="fa fa-database"></i>&nbsp;&nbsp;Item Quantity:&nbsp;<?php echo $details->item_quantity ?></p>
+       <p><i class="fa fa-money"></i>&nbsp;&nbsp;Sell Price:&nbsp;<?php echo $details->price?></p>
+       <p><i class="fa fa-money"></i>&nbsp;&nbsp;Purchase Price:&nbsp;<?php echo $details->item_quantity ?></p>
+      </div>
 
 
-   <div class="col-md-5">
-      <?php if($details->img_name.$details->ext == '') {?>
-          <td><img src="<?php echo base_url("uploads/")?>/default.jpg" class = "img-details-medium"></td>
-          <?php }else{ ?>
-          <img src="<?php echo base_url("uploads/")?>/<?php echo $details->img_name.$details->ext ?>" class = "img-details-medium">
-      <?php } ?>
+      <div class="col-md-5">
+        <?php if($details->img_name.$details->ext == '') {?>
+            <td><img src="<?php echo base_url("uploads/")?>/default.jpg" class = "img-details-medium"></td>
+            <?php }else{ ?>
+            <img src="<?php echo base_url("uploads/")?>/<?php echo $details->img_name.$details->ext ?>" class = "img-details-medium">
+        <?php } ?>
                   
-
-     <input type="hidden" name = "id" class="form-control"  value="<?php echo $details->id ?>" >
-     <input type="hidden" name = "item_quantity1" class="form-control"  value="<?php echo $details->item_quantity ?>" >
-     <input type="hidden" name = "item_category" class="form-control"  value="<?php echo $details->item_category ?>" >  
+       <input type="hidden" name = "id" class="form-control"  value="<?php echo $details->id ?>" >
+       <input type="hidden" name = "item_quantity1" class="form-control"  value="<?php echo $details->item_quantity ?>" >
+       <input type="hidden" name = "item_category" class="form-control"  value="<?php echo $details->item_category ?>" >  
+     </div>
    </div>
- </div>
 
      <hr class = "carved">
        <div class = "confirm-div"></div>
@@ -74,3 +73,4 @@
       </form>
   </div><!--end of template-container-->
 <?php endforeach;?>  
+ 
